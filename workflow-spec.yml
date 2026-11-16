@@ -1,0 +1,39 @@
+# Задание 3: многоуровневая структура, списки объектов и многострочный блок.
+workflow:
+  name: "YAML Validation Pipeline"
+  trigger:
+    events:
+      - push
+      - pull_request
+    branches: [main, develop]
+  jobs:
+    validate:
+      runs_on: ubuntu-latest
+      strategy:
+        matrix:
+          python_version: ["3.11", "3.12"]
+          operating_system: [ubuntu-latest]
+      steps:
+        - name: Checkout source
+          uses: actions/checkout@v4
+        - name: Set up Python
+          uses: actions/setup-python@v5
+          with:
+            python-version: "3.12"
+        - name: Install validator
+          run: |-
+            python -m pip install --upgrade pip
+            python -m pip install PyYAML
+        - name: Validate YAML files
+          env:
+            STRICT_MODE: "true"
+          run: |-
+            python scripts/validate_yaml.py
+      reports:
+        artifacts:
+          - name: validation-report
+            format: json
+            required: true
+          - name: workflow-log
+            format: text
+            required: false
