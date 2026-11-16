@@ -1,10 +1,12 @@
 # Задание 1: базовые типы данных, комментарии и блочный массив.
+# Комментарий поясняет назначение конфигурации учебного проекта.
 project_name: "YAML GitHub Actions Practice"
 version: 1
 is_active: true
 debug_mode: false
 deployment_note: null
 
+# Три окружения, в которых может выполняться проект.
 supported_environments:
   - development
   - staging
