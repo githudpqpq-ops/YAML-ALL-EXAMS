@@ -1,0 +1,19 @@
+# Задание 2: вложенные объекты, кавычки и разные виды массивов.
+project:
+  name: "YAML Syntax Lab"
+  metadata:
+    owner: "@student:github"
+    description: "Use @mentions, key: value pairs, and * symbols safely."
+    release_note: 'It''s important to double apostrophes in single-quoted strings.'
+  runner:
+    operating_system: ubuntu-latest
+    timeout_minutes: 20
+    retry_on_failure: true
+  stages:
+    - name: build
+      enabled: true
+    - name: test
+      enabled: true
+    - name: deploy
+      enabled: false
+  environments: [development, staging, production]
